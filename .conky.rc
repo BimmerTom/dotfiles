@@ -1,0 +1,50 @@
+alignment bottom_left
+background yes
+border_width 1
+cpu_avg_samples 1
+default_color 222222
+default_outline_color 222222
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+use_xft yes
+xftfont inconsolata:size=10
+gap_x 0
+gap_y 0
+minimum_size 1905 5
+maximum_width 1905
+net_avg_samples 1
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+own_window yes
+own_window_type panel
+own_window_transparent no
+own_window_argb_visual yes
+own_window_argb_value 255
+own_window_hints undecorated,above,sticky,skip_taskbar,skip_pager
+stippled_borders 0
+update_interval 1.0
+uppercase no
+use_spacer left
+show_graph_scale no
+show_graph_range no
+format_human_readable yes
+double_buffer yes
+
+color1 666666
+color2 888888
+color3 444444
+color4 ffffff
+
+TEXT
+${color1}IO(SSD):${color1} ${diskiograph /dev/sda 10,50 00ff00 ff0000 -t} ${color4}| \
+${color1}IO(RED):${color1} ${diskiograph /dev/sdb 10,50 00ff00 ff0000 -t} ${color4}| \
+${color1}CPU:${cpu}%${color2} ${cpugraph cpu1 10,10 00ff00 ff0000 -t}${cpugraph cpu2 10,10 00ff00 ff0000 -t}${cpugraph cpu3 10,10 00ff00 ff0000 -t}\
+${cpugraph cpu4 10,10 00ff00 ff0000 -t}${cpugraph cpu5 10,10 00ff00 ff0000 -t}${cpugraph cpu6 10,10 00ff00 ff0000 -t}${cpugraph cpu7 10,10 00ff00 ff0000 -t}${color1}${acpitemp}C ${color4}| \
+${color1}Load:${color2}${loadavg 1}${color1}/${loadavg 2}/${color3}${loadavg 3}${color1} ${loadgraph 10,50 00ff00 ff0000 -t} ${color4}| \
+${color1}RAM:${memperc}% ${memgraph 10,50 00ff00 ff0000 -t} ${color4}| \
+${color1}Uptime:${color2}${uptime} \
+${alignr}${color1}enp0s25 [${color3}${addr enp0s25}${color1}]: ${color2}Up: ${upspeed enp0s25} - Down: ${downspeed enp0s25} \
