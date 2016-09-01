@@ -1,14 +1,43 @@
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
 
-#Set Terminal Emulation to 256 colors
-[[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="michelebologna"
+ZSH_THEME="agnoster"
+
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/tperso/.zshrc'
+
+autoload -U colors && colors
+eval `dircolors /home/tperso/.dircolors`
+
+alias ls='ls -al --color=auto'
+alias ssh='TERM=xterm ssh'
+
+autoload -Uz compinit
+compinit
+
+# create a zkbd compatible hash;
+# to add other keys to this hash, see: man 5 terminfo
+
+tpass() {
+    PASSWORD_STORE_DIR=/home/tperso/git/passdb pass "$@"
+}
+
+#for working autocomplete:
+compdef _tpass tpass
+_tpass() {
+    PASSWORD_STORE_DIR=/home/tperso/git/passdb _pass
+}
+
+#TERM=xterm
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -52,7 +81,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-256colors)
+plugins=(git)
 
 # User configuration
 
@@ -91,16 +120,3 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
-
-eval `dircolors ~/.dircolors` 
-
-tpass() {
-            PASSWORD_STORE_DIR=/home/tperso/git/passdb pass "$@"
-    }
-
-    #for working autocomplete:
-    compdef _tpass tpass
-    _tpass() {
-        PASSWORD_STORE_DIR=/home/tperso/git/passdb _pass
-        }
-
